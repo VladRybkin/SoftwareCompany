@@ -14,8 +14,8 @@ public class BugServiceImpl implements BugService {
 
     @Override
     public void createBug(String desription) throws Exception {
-        Bug bug=new Bug();
-        bug.setId(bugs.size()+1);
+        Bug bug = new Bug();
+        bug.setId(bugs.size() + 1);
         bug.setDescription(desription);
 
         if (!bugs.containsKey(bug.getId())) {
@@ -35,7 +35,7 @@ public class BugServiceImpl implements BugService {
     }
 
     @Override
-    public void assignToEmployee(Employee employee, Bug bug)  {
+    public void assignToEmployee(Employee employee, Bug bug) {
         bug.setEmployeeId(employee.getId());
     }
 }

@@ -12,7 +12,7 @@ public interface DepartmentService {
 
     void updateDepartment(Department department) throws Exception;
 
-    void assignToDepartment(Employee employee, Department department) ;
+    void assignToDepartment(Employee employee, Department department);
 
     List<Employee> getAllEmployees(int departmentId);
 
