@@ -28,9 +28,6 @@ class DepartmentServiceImplTest {
     private EmployeeServiceImpl employeeServiceMock;
 
 
-
-
-
     @Test
     void assignToDepartment() throws Exception {
 
@@ -53,7 +50,6 @@ class DepartmentServiceImplTest {
         lenient().when((departmentService.getAllEmployees(anyInt()))).thenReturn(employees);
 
     }
-
 
 
     @Test

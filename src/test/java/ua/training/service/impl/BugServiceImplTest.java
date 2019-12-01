@@ -20,9 +20,13 @@ class BugServiceImplTest {
     @Mock
     private BugService bugServiceMock;
 
+    @Mock
+    private BugService bugServiceTest;
 
-
-
+    @BeforeEach
+    void setup() {
+        bugServiceTest = new BugServiceImpl();
+    }
 
 
     @Test
