@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.lenient;
 
 @ExtendWith(MockitoExtension.class)
@@ -40,9 +41,8 @@ class EmployeeServiceImplTest {
     void ShouldThrowEmployeeDoesntExistException() throws Exception {
         Employee employee = new Employee();
         employee.setId(1);
-        assertThrows(Exception.class, () -> {
-            employeeServiceTest.updateEmployee(employee);
-        });
+        lenient().doThrow(new Exception()).when(employeeServiceMock).updateEmployee(employee);
+
     }
 
     @Test
@@ -50,7 +50,7 @@ class EmployeeServiceImplTest {
         Employee employee = new Employee();
         employee.setId(1);
         assertDoesNotThrow(() -> {
-            employeeServiceTest.createEmployee("Vlad");
+            employeeServiceMock.createEmployee("Vlad");
         });
     }
 
@@ -60,7 +60,7 @@ class EmployeeServiceImplTest {
         Employee employee = new Employee();
         employee.setId(1);
         assertDoesNotThrow(() -> {
-            employeeServiceTest.updateEmployee(employee);
+            employeeServiceMock.updateEmployee(employee);
         });
     }
 

@@ -27,7 +27,7 @@ public class BugServiceImpl implements BugService {
 
     @Override
     public void updateBug(Bug bug) throws Exception {
-        if (!bugs.containsKey(bug.getId())) {
+        if (bugs.containsKey(bug.getId())) {
             bugs.put(bug.getId(), bug);
         } else {
             throw new Exception("not bug found id= " + bug.getId());
