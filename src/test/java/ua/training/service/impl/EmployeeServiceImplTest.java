@@ -45,23 +45,6 @@ class EmployeeServiceImplTest {
 
     }
 
-    @Test
-    void ShouldNotThrowEmployeeAlreadyExistException() throws Exception {
-        Employee employee = new Employee();
-        employee.setId(1);
-        assertDoesNotThrow(() -> {
-            employeeServiceMock.createEmployee("Vlad");
-        });
-    }
 
-    @Test
-    void ShouldNotThrowEmployeeAlreadyDoesNotExistException() throws Exception {
-        employeeServiceTest.createEmployee("vlad");
-        Employee employee = new Employee();
-        employee.setId(1);
-        assertDoesNotThrow(() -> {
-            employeeServiceMock.updateEmployee(employee);
-        });
-    }
 
 }

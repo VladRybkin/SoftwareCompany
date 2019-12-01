@@ -28,9 +28,6 @@ class DepartmentServiceImplTest {
     private EmployeeServiceImpl employeeServiceMock;
 
 
-
-
-
     @Test
     void assignToDepartment() throws Exception {
 
@@ -54,23 +51,6 @@ class DepartmentServiceImplTest {
 
     }
 
-    @Test
-    void ShouldNotThrowDepartmentAlreadyDoesNotExistException() throws Exception {
-        departmentServiceMock.createDepartment("Test Department");
-        Department department = new Department();
-        department.setId(1);
-        assertDoesNotThrow(() -> {
-            departmentServiceMock.updateDepartment(department);
-        });
-    }
-
-    @Test
-    void ShouldNotThrowDepartmentAlreadyExistException() throws Exception {
-
-        assertDoesNotThrow(() -> {
-            departmentServiceMock.createDepartment("Test Department");
-        });
-    }
 
     @Test
     void ShouldThrowDepartmentDoesntExistException() throws Exception {

@@ -21,24 +21,6 @@ class BugServiceImplTest {
     private BugService bugServiceMock;
 
 
-
-
-    @Test
-    void ShouldNotThrowBugAlreadyDoesNotExistException() throws Exception {
-        Bug bug = new Bug();
-        bug.setId(1);
-        bugServiceMock.createBug("Test bug");
-        bugServiceMock.updateBug(bug);
-    }
-
-    @Test
-    void ShouldNotThrowBugAlreadyExistException() throws Exception {
-
-        assertDoesNotThrow(() -> {
-            bugServiceMock.createBug("Test bug");
-        });
-    }
-
     @Test
     void ShouldThrowBugDoesntExistException() throws Exception {
         Bug bug = new Bug();
