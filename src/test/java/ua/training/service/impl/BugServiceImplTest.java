@@ -20,14 +20,6 @@ class BugServiceImplTest {
     @Mock
     private BugService bugServiceMock;
 
-    @Mock
-    private BugService bugServiceTest;
-
-    @BeforeEach
-    void setup() {
-        bugServiceTest = new BugServiceImpl();
-    }
-
 
     @Test
     void ShouldThrowBugDoesntExistException() throws Exception {
@@ -37,16 +29,4 @@ class BugServiceImplTest {
     }
 
 
-    @Test
-    void assignToEmployee() throws Exception {
-        Bug bug = new Bug();
-        bug.setId(1);
-
-        Employee employee = new Employee();
-        employee.setId(1);
-
-        bugServiceMock.assignToEmployee(employee, bug);
-        assertEquals(bug.getId(), employee.getId());
-
-    }
 }
