@@ -35,13 +35,6 @@ class EmployeeServiceImplTest {
         lenient().when(employeeServiceMock.getAllEmployees()).thenReturn(employeesList);
     }
 
-    @Test
-    void createEmployee() throws Exception {
-        employeeServiceTest.createEmployee("vlad");
-        assertEquals(employeeServiceTest.getAllEmployees().size(), 1);
-
-
-    }
 
     @Test
     void ShouldThrowEmployeeDoesntExistException() throws Exception {

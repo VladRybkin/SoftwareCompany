@@ -9,6 +9,6 @@ public interface BugService {
 
     void updateBug(Bug bug) throws Exception;
 
-    void assignToEmployee(Employee employee, Bug bug);
+    void assignToEmployee(Employee employee, Bug bug) throws Exception;
 
 }
