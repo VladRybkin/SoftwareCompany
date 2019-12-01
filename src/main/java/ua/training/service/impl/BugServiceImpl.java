@@ -35,7 +35,8 @@ public class BugServiceImpl implements BugService {
     }
 
     @Override
-    public void assignToEmployee(Employee employee, Bug bug) {
+    public void assignToEmployee(Employee employee, Bug bug) throws Exception {
         bug.setEmployeeId(employee.getId());
+        updateBug(bug);
     }
 }

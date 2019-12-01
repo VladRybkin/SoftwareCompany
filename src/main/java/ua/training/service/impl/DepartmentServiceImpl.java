@@ -39,8 +39,10 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public void assignToDepartment(Employee employee, Department department) {
+    public void assignToDepartment(Employee employee, Department department) throws Exception {
+
         employee.setDepatmentId(department.getId());
+        employeeService.updateEmployee(employee);
     }
 
     @Override
