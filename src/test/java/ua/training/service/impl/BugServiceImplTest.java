@@ -21,9 +21,7 @@ class BugServiceImplTest {
     private BugService bugServiceMock;
 
 
-    @Test
-    void createBug() {
-    }
+
 
     @Test
     void ShouldNotThrowBugAlreadyDoesNotExistException() throws Exception {
