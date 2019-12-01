@@ -28,27 +28,14 @@ class DepartmentServiceImplTest {
     private EmployeeServiceImpl employeeServiceMock;
 
 
-    private EmployeeService employeeServiceTest;
-
-    @BeforeEach
-    void setup() {
-        employeeServiceTest = new EmployeeServiceImpl();
-    }
 
 
-    @Test
-    void updateDepartment() throws Exception {
-        Department department = new Department();
-        department.setId(1);
-        departmentServiceMock.createDepartment("Test Department");
-        departmentServiceMock.updateDepartment(department);
-
-    }
 
     @Test
     void assignToDepartment() throws Exception {
-        employeeServiceTest.createEmployee("Test Employee");
-        Employee employee = employeeServiceTest.getAllEmployees().stream().findAny().get();
+
+        Employee employee = new Employee();
+        employee.setId(1);
 
         Department department = new Department();
         department.setId(1);
@@ -67,23 +54,7 @@ class DepartmentServiceImplTest {
 
     }
 
-    @Test
-    void ShouldNotThrowDepartmentAlreadyDoesNotExistException() throws Exception {
-        departmentServiceMock.createDepartment("Test Department");
-        Department department = new Department();
-        department.setId(1);
-        assertDoesNotThrow(() -> {
-            departmentServiceMock.updateDepartment(department);
-        });
-    }
 
-    @Test
-    void ShouldNotThrowEmployeeAlreadyExistException() throws Exception {
-
-        assertDoesNotThrow(() -> {
-            departmentServiceMock.createDepartment("Test Department");
-        });
-    }
 
     @Test
     void ShouldThrowDepartmentDoesntExistException() throws Exception {
