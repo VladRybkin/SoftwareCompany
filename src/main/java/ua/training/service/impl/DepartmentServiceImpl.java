@@ -17,10 +17,9 @@ public class DepartmentServiceImpl implements DepartmentService {
     private Map<Integer, Department> departments = new HashMap<>();
 
     @Override
-    public void createDepartment(String name) throws Exception {
-        Department department = new Department();
+    public void createDepartment(Department department) throws Exception {
         department.setId(departments.size() + 1);
-        department.setName(name);
+        department.setName(department.getName());
 
         if (!departments.containsKey(department.getId())) {
             departments.put(department.getId(), department);
@@ -48,5 +47,10 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public List<Employee> getAllEmployees(int departmentId) {
         return employeeService.getAllEmployees().stream().filter(e -> e.getId() == departmentId).collect(Collectors.toList());
+    }
+
+    @Override
+    public Department findById(int id) {
+        return departments.get(id);
     }
 }

@@ -13,10 +13,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     private Map<Integer, Employee> employees = new HashMap<>();
 
 
-    public void createEmployee(String name) throws Exception {
-        Employee employee = new Employee();
+    public void createEmployee(Employee employee) throws Exception {
+
         employee.setId(employees.size() + 1);
-        employee.setName(name);
+        employee.setName(employee.getName());
 
         if (!employees.containsKey(employee.getId())) {
             employees.put(employee.getId(), employee);
@@ -38,5 +38,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<Employee> getAllEmployees() {
         return new ArrayList<>(employees.values());
+    }
+
+    @Override
+    public Employee findById(int id) {
+        return employees.get(id);
     }
 }

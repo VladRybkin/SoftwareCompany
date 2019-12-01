@@ -13,10 +13,10 @@ public class BugServiceImpl implements BugService {
     private Map<Integer, Bug> bugs = new HashMap<>();
 
     @Override
-    public void createBug(String desription) throws Exception {
-        Bug bug = new Bug();
+    public void createBug(Bug bug) throws Exception {
+
         bug.setId(bugs.size() + 1);
-        bug.setDescription(desription);
+        bug.setDescription(bug.getDescription());
 
         if (!bugs.containsKey(bug.getId())) {
             bugs.put(bug.getId(), bug);
@@ -38,5 +38,10 @@ public class BugServiceImpl implements BugService {
     public void assignToEmployee(Employee employee, Bug bug) throws Exception {
         bug.setEmployeeId(employee.getId());
         updateBug(bug);
+    }
+
+    @Override
+    public Bug findById(int id) {
+        return bugs.get(id);
     }
 }
