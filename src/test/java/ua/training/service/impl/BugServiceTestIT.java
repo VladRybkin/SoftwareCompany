@@ -63,5 +63,17 @@ public class BugServiceTestIT {
         assertEquals(bug.getEmployeeId(), employee.getId());
     }
 
+    @Test
+    void findById() throws Exception {
+        Bug bug = new Bug();
+        bug.setEmployeeId(999);
+        bug.setDescription(TEST_DESCRIPTION);
+        bugServiceTest.createBug(bug);
+        Bug foundById = bugServiceTest.findById(1);
+        assertEquals(foundById.getDescription(), bug.getDescription());
+        assertEquals(foundById.getEmployeeId(), bug.getEmployeeId());
+
+    }
+
 
 }
