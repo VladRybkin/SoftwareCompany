@@ -53,7 +53,7 @@ class EmployeeServiceTestIT {
         Employee employee2 = new Employee();
 
         employee.setName(TEST_NAME);
-        employee.setName(TEST_NAME + 2);
+        employee2.setName(TEST_NAME + 2);
         employeeServiceTest.createEmployee(employee);
         employeeServiceTest.createEmployee(employee2);
         assertEquals(employeeServiceTest.getAllEmployees(), Arrays.asList(employee, employee2));
