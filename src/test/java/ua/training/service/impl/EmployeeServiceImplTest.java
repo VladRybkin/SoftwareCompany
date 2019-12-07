@@ -11,8 +11,7 @@ import ua.training.service.EmployeeService;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.doThrow;
+
 import static org.mockito.Mockito.lenient;
 
 @ExtendWith(MockitoExtension.class)

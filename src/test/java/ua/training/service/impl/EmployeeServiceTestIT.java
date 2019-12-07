@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class EmployeeServiceTestIT {
 
-    EmployeeService employeeServiceTest;
+    private EmployeeService employeeServiceTest;
 
     private String TEST_NAME = "Test name";
 

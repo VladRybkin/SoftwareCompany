@@ -53,8 +53,8 @@ class DepartmentServiceITestIT {
 
     @Test
     void assignToDepartment() throws Exception {
-        Employee employee=new Employee();
-        Department department=new Department();
+        Employee employee = new Employee();
+        Department department = new Department();
         department.setId(1);
         employeeService.createEmployee(employee);
         departmentServiceTest.assignToDepartment(employee, department);
@@ -63,12 +63,12 @@ class DepartmentServiceITestIT {
 
     @Test
     void getAllEmployess() throws Exception {
-        Employee employee=new Employee();
+        Employee employee = new Employee();
         employee.setId(1);
         employee.setDepatmentId(1);
         employeeService.createEmployee(employee);
-       departmentServiceTest.getAllEmployees(1);
-       assertEquals(1, departmentServiceTest.getAllEmployees(1).size());
+        departmentServiceTest.getAllEmployees(1);
+        assertEquals(1, departmentServiceTest.getAllEmployees(1).size());
 
     }
 
