@@ -12,9 +12,16 @@ import java.util.stream.Collectors;
 
 public class DepartmentServiceImpl implements DepartmentService {
 
-    private EmployeeService employeeService = new EmployeeServiceImpl();
+    private EmployeeService employeeService;
 
     private Map<Integer, Department> departments = new HashMap<>();
+
+    public DepartmentServiceImpl() {
+    }
+
+    public DepartmentServiceImpl(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
 
     @Override
     public void createDepartment(Department department) throws Exception {
@@ -53,4 +60,6 @@ public class DepartmentServiceImpl implements DepartmentService {
     public Department findById(int id) {
         return departments.get(id);
     }
+
+
 }

@@ -7,14 +7,13 @@ import ua.training.model.entity.Employee;
 import ua.training.service.DepartmentService;
 import ua.training.service.EmployeeService;
 
-import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class DepartmentServiceITestIT {
 
-    DepartmentService departmentServiceTest;
-    EmployeeService employeeService;
+    private DepartmentService departmentServiceTest;
+    private EmployeeService employeeService;
 
     private String TEST_NAME = "Test name";
 
@@ -22,8 +21,9 @@ class DepartmentServiceITestIT {
 
     @BeforeEach
     void setup() {
-        departmentServiceTest = new DepartmentServiceImpl();
-        employeeService=new EmployeeServiceImpl();
+        employeeService = new EmployeeServiceImpl();
+        departmentServiceTest = new DepartmentServiceImpl(employeeService);
+
     }
 
     @Test
@@ -51,7 +51,26 @@ class DepartmentServiceITestIT {
         assertEquals(result.getName(), TEST_NAME_UPDATED);
     }
 
+    @Test
+    void assignToDepartment() throws Exception {
+        Employee employee=new Employee();
+        Department department=new Department();
+        department.setId(1);
+        employeeService.createEmployee(employee);
+        departmentServiceTest.assignToDepartment(employee, department);
 
+    }
+
+    @Test
+    void getAllEmployess() throws Exception {
+        Employee employee=new Employee();
+        employee.setId(1);
+        employee.setDepatmentId(1);
+        employeeService.createEmployee(employee);
+       departmentServiceTest.getAllEmployees(1);
+       assertEquals(1, departmentServiceTest.getAllEmployees(1).size());
+
+    }
 
 
     @Test
