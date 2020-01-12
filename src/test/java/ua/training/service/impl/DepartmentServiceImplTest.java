@@ -33,7 +33,7 @@ class DepartmentServiceImplTest {
     void assignToDepartment() throws Exception {
 
         Employee employee = new Employee();
-        employee.setId(ID);
+
 
         Department department = new Department();
         department.setId(ID);
