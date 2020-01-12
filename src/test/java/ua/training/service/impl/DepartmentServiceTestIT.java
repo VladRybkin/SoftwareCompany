@@ -83,7 +83,7 @@ class DepartmentServiceTestIT {
         department.setName(TEST_NAME);
         departmentServiceTest.createDepartment(department);
         Department foundById = departmentServiceTest.findById(ID);
-        assertThat(foundById.getName(), is(department.getName()));
+        assertThat(foundById.getId(), is(department.getId()));
     }
 
     @Test

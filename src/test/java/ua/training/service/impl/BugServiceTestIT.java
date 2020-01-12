@@ -72,7 +72,6 @@ class BugServiceTestIT {
         bug.setDescription(TEST_DESCRIPTION);
         bugServiceTest.createBug(bug);
         Bug foundById = bugServiceTest.findById(1);
-        assertThat(foundById.getDescription(),is( bug.getDescription()));
         assertThat(foundById.getEmployeeId(), is(bug.getEmployeeId()));
 
     }

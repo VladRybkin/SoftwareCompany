@@ -68,7 +68,7 @@ class EmployeeServiceTestIT {
         employee.setName(TEST_NAME);
         employeeServiceTest.createEmployee(employee);
         Employee foundById = employeeServiceTest.findById(1);
-        assertThat(foundById.getName(), is(employee.getName()));
+        assertThat(foundById.getId(), is(employee.getId()));
 
     }
 }
