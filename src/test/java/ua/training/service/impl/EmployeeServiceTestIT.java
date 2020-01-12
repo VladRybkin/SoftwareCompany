@@ -7,7 +7,9 @@ import ua.training.service.EmployeeService;
 
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+
 
 class EmployeeServiceTestIT {
 
@@ -31,8 +33,8 @@ class EmployeeServiceTestIT {
         Employee foundByIdEmployee = employeeServiceTest.findById(employee.getId());
         employee.setId(1);
 
-        assertEquals(employee.getId(), foundByIdEmployee.getId());
-        assertEquals(employee.getName(), foundByIdEmployee.getName());
+        assertThat(employee.getId(), is(foundByIdEmployee.getId()));
+        assertThat(employee.getName(), is(foundByIdEmployee.getName()));
     }
 
     @Test
@@ -44,7 +46,7 @@ class EmployeeServiceTestIT {
         employee.setName(TEST_NAME_UPDATED);
         employeeServiceTest.updateEmployee(employee);
         Employee result = employeeServiceTest.findById(employee.getId());
-        assertEquals(result.getName(), TEST_NAME_UPDATED);
+        assertThat(result.getName(), is(TEST_NAME_UPDATED));
     }
 
     @Test
@@ -56,7 +58,7 @@ class EmployeeServiceTestIT {
         employee2.setName(TEST_NAME + 2);
         employeeServiceTest.createEmployee(employee);
         employeeServiceTest.createEmployee(employee2);
-        assertEquals(employeeServiceTest.getAllEmployees(), Arrays.asList(employee, employee2));
+        assertThat(employeeServiceTest.getAllEmployees(), is(Arrays.asList(employee, employee2)));
     }
 
     @Test
@@ -66,7 +68,7 @@ class EmployeeServiceTestIT {
         employee.setName(TEST_NAME);
         employeeServiceTest.createEmployee(employee);
         Employee foundById = employeeServiceTest.findById(1);
-        assertEquals(foundById.getName(), employee.getName());
+        assertThat(foundById.getName(), is(employee.getName()));
 
     }
 }

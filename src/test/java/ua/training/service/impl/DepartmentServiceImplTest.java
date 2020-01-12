@@ -27,7 +27,7 @@ class DepartmentServiceImplTest {
     @Mock
     private EmployeeServiceImpl employeeServiceMock;
 
-    private static final int ID=1;
+    private static final int ID = 1;
 
 
     @Test
@@ -40,7 +40,7 @@ class DepartmentServiceImplTest {
         department.setId(ID);
 
         departmentService.assignToDepartment(employee, department);
-        assertEquals(employee.getId(), department.getId());
+        assertThat(employee.getId(), is(department.getId()));
         verify(employeeServiceMock).updateEmployee(employee);
 
     }
@@ -52,9 +52,7 @@ class DepartmentServiceImplTest {
         assertThat(departmentService.getAllEmployees(ID), is(employees));
         verify(employeeServiceMock).getEmployeesById(ID);
 
-
     }
-
 
 
 }
