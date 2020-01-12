@@ -1,6 +1,5 @@
 package ua.training.service.impl;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -8,13 +7,14 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ua.training.model.entity.Department;
 import ua.training.model.entity.Employee;
-import ua.training.service.DepartmentService;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -22,22 +22,24 @@ import static org.mockito.Mockito.*;
 class DepartmentServiceImplTest {
 
     @InjectMocks
-    private DepartmentServiceImpl departmentServiceMock;
+    private DepartmentServiceImpl departmentService;
 
     @Mock
     private EmployeeServiceImpl employeeServiceMock;
+
+    private static final int ID=1;
 
 
     @Test
     void assignToDepartment() throws Exception {
 
         Employee employee = new Employee();
-        employee.setId(1);
+        employee.setId(ID);
 
         Department department = new Department();
-        department.setId(1);
+        department.setId(ID);
 
-        departmentServiceMock.assignToDepartment(employee, department);
+        departmentService.assignToDepartment(employee, department);
         assertEquals(employee.getId(), department.getId());
         verify(employeeServiceMock).updateEmployee(employee);
 
@@ -45,19 +47,14 @@ class DepartmentServiceImplTest {
 
     @Test
     void getAllEmployees() {
-        DepartmentService departmentService = mock(DepartmentService.class);
         List<Employee> employees = new ArrayList<>();
-        lenient().when((departmentService.getAllEmployees(anyInt()))).thenReturn(employees);
+        when((employeeServiceMock.getEmployeesById(ID))).thenReturn(employees);
+        assertThat(departmentService.getAllEmployees(ID), is(employees));
+        verify(employeeServiceMock).getEmployeesById(ID);
+
 
     }
 
 
-    @Test
-    void ShouldThrowDepartmentDoesntExistException() throws Exception {
-        Department department = new Department();
-        department.setId(1);
-        assertThrows(Exception.class, () -> {
-            departmentServiceMock.updateDepartment(department);
-        });
-    }
+
 }

@@ -53,7 +53,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public List<Employee> getAllEmployees(int departmentId) {
-        return employeeService.getAllEmployees().stream().filter(e -> e.getId() == departmentId).collect(Collectors.toList());
+        return employeeService.getEmployeesById(departmentId);
     }
 
     @Override

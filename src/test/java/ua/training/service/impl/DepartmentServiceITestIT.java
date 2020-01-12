@@ -8,6 +8,8 @@ import ua.training.service.DepartmentService;
 import ua.training.service.EmployeeService;
 
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DepartmentServiceITestIT {
@@ -18,6 +20,8 @@ class DepartmentServiceITestIT {
     private String TEST_NAME = "Test name";
 
     private String TEST_NAME_UPDATED = "updated test name";
+
+    private static final int ID=1;
 
     @BeforeEach
     void setup() {
@@ -33,10 +37,10 @@ class DepartmentServiceITestIT {
 
         departmentServiceTest.createDepartment(department);
         Department foundById = departmentServiceTest.findById(department.getId());
-        department.setId(1);
+        department.setId(ID);
 
-        assertEquals(department.getId(), foundById.getId());
-        assertEquals(department.getName(), foundById.getName());
+        assertThat(department.getId(), is(foundById.getId()));
+        assertThat(department.getName(), is(foundById.getName()));
     }
 
     @Test
@@ -48,7 +52,7 @@ class DepartmentServiceITestIT {
         department.setName(TEST_NAME_UPDATED);
         departmentServiceTest.updateDepartment(department);
         Department result = departmentServiceTest.findById(department.getId());
-        assertEquals(result.getName(), TEST_NAME_UPDATED);
+        assertThat(result.getName(), is(TEST_NAME_UPDATED));
     }
 
     @Test
@@ -64,11 +68,11 @@ class DepartmentServiceITestIT {
     @Test
     void getAllEmployess() throws Exception {
         Employee employee = new Employee();
-        employee.setId(1);
-        employee.setDepatmentId(1);
+        employee.setId(ID);
+        employee.setDepatmentId(ID);
         employeeService.createEmployee(employee);
-        departmentServiceTest.getAllEmployees(1);
-        assertEquals(1, departmentServiceTest.getAllEmployees(1).size());
+        departmentServiceTest.getAllEmployees(ID);
+        assertThat(departmentServiceTest.getAllEmployees(ID).size(), is(ID));
 
     }
 
@@ -76,10 +80,19 @@ class DepartmentServiceITestIT {
     @Test
     void findById() throws Exception {
         Department department = new Department();
-
         department.setName(TEST_NAME);
         departmentServiceTest.createDepartment(department);
-        Department foundById = departmentServiceTest.findById(1);
-        assertEquals(foundById.getName(), department.getName());
+        Department foundById = departmentServiceTest.findById(ID);
+        assertThat(foundById.getName(), is(department.getName()));
+    }
+
+    @Test
+    void ShouldThrowDepartmentDoesntExistException() throws Exception {
+        Department department = new Department();
+        department.setId(ID);
+        assertNull(departmentServiceTest.findById(ID));
+        assertThrows(Exception.class, () -> {
+            departmentServiceTest.updateDepartment(department);
+        });
     }
 }

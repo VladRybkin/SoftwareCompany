@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class EmployeeServiceImpl implements EmployeeService {
 
@@ -43,5 +44,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee findById(int id) {
         return employees.get(id);
+    }
+
+    @Override
+    public List<Employee> getEmployeesById(int departmentId) {
+        return employees.values().stream().filter(e -> e.getId() == departmentId).collect(Collectors.toList());
     }
 }

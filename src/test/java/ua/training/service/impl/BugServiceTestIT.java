@@ -6,6 +6,8 @@ import ua.training.model.entity.Bug;
 import ua.training.model.entity.Employee;
 import ua.training.service.BugService;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BugServiceTestIT {
@@ -31,9 +33,9 @@ class BugServiceTestIT {
         Bug foundByIdBug = bugServiceTest.findById(bug.getId());
         bug.setId(1);
 
-        assertEquals(bug.getId(), foundByIdBug.getId());
-        assertEquals(bug.getDescription(), foundByIdBug.getDescription());
-        assertEquals(bug.getEmployeeId(), foundByIdBug.getEmployeeId());
+        assertThat(bug.getId(), is(foundByIdBug.getId()));
+        assertThat(bug.getDescription(), is(foundByIdBug.getDescription()));
+        assertThat(bug.getEmployeeId(), is(foundByIdBug.getEmployeeId()));
 
     }
 
@@ -47,7 +49,7 @@ class BugServiceTestIT {
         bug.setDescription(TEST_DESCRIPTION_UPDATED);
         bugServiceTest.updateBug(bug);
         Bug result = bugServiceTest.findById(bug.getId());
-        assertEquals(result.getDescription(), TEST_DESCRIPTION_UPDATED);
+        assertThat(result.getDescription(), is(TEST_DESCRIPTION_UPDATED));
     }
 
 
@@ -60,7 +62,7 @@ class BugServiceTestIT {
         employee.setId(1);
 
         bugServiceTest.assignToEmployee(employee, bug);
-        assertEquals(bug.getEmployeeId(), employee.getId());
+        assertThat(bug.getEmployeeId(), is(employee.getId()));
     }
 
     @Test
@@ -70,8 +72,8 @@ class BugServiceTestIT {
         bug.setDescription(TEST_DESCRIPTION);
         bugServiceTest.createBug(bug);
         Bug foundById = bugServiceTest.findById(1);
-        assertEquals(foundById.getDescription(), bug.getDescription());
-        assertEquals(foundById.getEmployeeId(), bug.getEmployeeId());
+        assertThat(foundById.getDescription(),is( bug.getDescription()));
+        assertThat(foundById.getEmployeeId(), is(bug.getEmployeeId()));
 
     }
 
