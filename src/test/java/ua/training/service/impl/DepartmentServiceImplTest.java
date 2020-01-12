@@ -15,7 +15,6 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -40,7 +39,6 @@ class DepartmentServiceImplTest {
         department.setId(ID);
 
         departmentService.assignToDepartment(employee, department);
-        assertThat(employee.getId(), is(department.getId()));
         verify(employeeServiceMock).updateEmployee(employee);
 
     }
